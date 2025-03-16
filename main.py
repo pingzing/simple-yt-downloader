@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 
+root = tk.Tk()
+song_counter_value = tk.DoubleVar()
 
 def main():
-    root = tk.Tk()
     root.title("YouTube Music Downloader")
     root.minsize(width=350, height=50)
     root.columnconfigure(0, weight=1)
@@ -18,8 +19,10 @@ def main():
     song_label = ttk.Label(content, text="Songs")
     song_label.grid(row=0, column=0, stick=(tk.E))
 
+    song_counter_value.set(0)
+    song_counter_value.trace_add("write", on_value_changed)
     song_counter_picker = ttk.Spinbox(
-        content, from_=0, to=20, wrap=True, width=5)
+        content, from_=0, to=20, wrap=True, width=5, textvariable=song_counter_value)
     song_counter_picker.set(0)
     song_counter_picker.grid(row=0, column=1, sticky=(tk.W))
 
@@ -41,6 +44,11 @@ def main():
     content.grid_rowconfigure(1, weight=80)
 
     root.mainloop()
+
+
+def on_value_changed(var, index, mode):
+    new_val = song_counter_value.get()
+    print(f"{new_val}")
 
 
 main()
