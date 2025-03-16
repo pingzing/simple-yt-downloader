@@ -4,6 +4,9 @@ from tkinter import ttk
 root = tk.Tk()
 song_counter_value = tk.DoubleVar()
 
+list_container_rows = 0
+list_container = None
+
 def main():
     root.title("YouTube Music Downloader")
     root.minsize(width=350, height=50)
@@ -48,7 +51,23 @@ def main():
 
 def on_value_changed(var, index, mode):
     new_val = song_counter_value.get()
-    print(f"{new_val}")
+    update_list(new_val)
+
+
+def update_list(new_count):
+    if (list_container == None):
+        return
+
+    if (new_count == list_container_rows):
+        return
+
+    difference = new_count - list_container_rows
+    if (difference < 0):
+        # remove rows
+        raise NotImplementedError()
+    else:
+        # add rows
+        raise NotImplementedError()
 
 
 main()
