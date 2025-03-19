@@ -11,6 +11,7 @@ def make_rows(parent, count):
         label.grid(row=i, column=1, sticky=(tk.S, tk.E))
     parent.grid_rowconfigure(0, weight=10)
 
+
 root = tk.Tk()
 
 list_container_rows = 0
@@ -46,5 +47,7 @@ list_container.grid_columnconfigure(0, weight=90)
 list_container.grid_columnconfigure(1, weight=10)
 
 make_rows(list_container, 10)
+
+# TODO: Set up download button command
 
 root.mainloop()
