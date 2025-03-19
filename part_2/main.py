@@ -40,7 +40,7 @@ list_container.grid_columnconfigure(1, weight=10)
 entry_1 = ttk.Entry(list_container)
 entry_1.grid(row=0, column=0, sticky=(tk.E, tk.W))
 label_1 = ttk.Label(list_container, text="Ready")
-label_1.grid(row=0, column=1, sticky=(tk.E, tk.N, tk.W))
+label_1.grid(row=0, column=1, sticky=(tk.S, tk.E))
 
 list_container.grid_rowconfigure(0, weight=10)
 
