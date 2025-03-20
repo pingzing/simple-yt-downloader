@@ -17,9 +17,9 @@ def download_clicked(list_items):
         entry = list_items[index]
         label = list_items[index + 1]
         # Get URL from entry, call yt-dlp, update label as it downloads
+
         print(entry)
         print(label)
-
 
 root = tk.Tk()
 

@@ -1,5 +1,34 @@
 import tkinter as tk
 from tkinter import ttk
+import yt_dlp
+
+
+def make_rows(number_of_rows, parent):
+    for i in range(0, number_of_rows):
+        entry = ttk.Entry(list_container)
+        entry.grid(row=i, column=0, sticky=(tk.E, tk.W))
+        label = ttk.Label(list_container, text="Ready")
+        label.grid(row=i, column=1, sticky=(tk.E))
+
+        parent.grid_rowconfigure(i, weight=10)
+
+
+def download_songs(list_items):
+    downloader = yt_dlp.YoutubeDL(
+        {"extract_audio": True, "format": "bestaudio", "outtmpl": "%(title)s.mp3"})
+    for index in range(0, len(list_items), 2):
+        label: ttk.Label = list_items[index]
+        entry: ttk.Entry = list_items[index + 1]
+
+        video_address = entry.get()
+        label.configure(text="Downloading...")
+        try:
+            downloader.download(video_address)
+            label.configure(text="Done!")
+        except Exception as e:
+            print("Got exception while downloading: " + str(e))
+            label.configure(text="Oho")
+
 
 root = tk.Tk()
 
@@ -18,7 +47,8 @@ content.grid_rowconfigure(0, pad=5, weight=0)
 content.grid_columnconfigure(0, weight=1)
 
 # Grid Row 0: Button
-download_button = ttk.Button(content, text="Download")
+download_button = ttk.Button(
+    content, text="Download", command=lambda: download_songs(list_container.grid_slaves()))
 download_button.grid(row=0, column=0,
                      sticky=(tk.N, tk.E, tk.W))
 
@@ -37,11 +67,6 @@ list_container.grid_columnconfigure(1, weight=10)
 
 # Each of list_container's rows will have an Entry and a Label
 
-entry_1 = ttk.Entry(list_container)
-entry_1.grid(row=0, column=0, sticky=(tk.E, tk.W))
-label_1 = ttk.Label(list_container, text="Ready")
-label_1.grid(row=0, column=1, sticky=(tk.E))
-
-list_container.grid_rowconfigure(0, weight=10)
+make_rows(10, list_container)
 
 root.mainloop()

@@ -30,18 +30,18 @@ content.grid_columnconfigure(0, weight=10)
 # Grid Row 0: Button
 download_button = ttk.Button(content, text="Download")
 download_button.grid(row=0, column=0,
-                     sticky=(tk.W, tk.E, tk.N))
+                     sticky=(tk.N, tk.E, tk.W))
 
 # Grid Row 1: Separator
 separator = ttk.Separator(content, orient=tk.HORIZONTAL)
-separator.grid(row=1, column=0, sticky=(tk.E, tk.W, tk.N))
+separator.grid(row=1, column=0, sticky=(tk.N, tk.E, tk.W))
 
 # Grid Row 2: Frame named list_container, which contains a sub-grid
 
 content.grid_rowconfigure(2, weight=90)
 
 list_container = ttk.Frame(content, padding=(5, 5, 5, 5))
-list_container.grid(row=2, column=0, sticky=(tk.W, tk.N, tk.E))
+list_container.grid(row=2, column=0, sticky=(tk.N, tk.E, tk.W))
 list_container.grid_columnconfigure(0, weight=90)
 list_container.grid_columnconfigure(1, weight=10)
 
