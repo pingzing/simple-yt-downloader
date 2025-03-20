@@ -4,7 +4,7 @@
 
 ### Requirements
 
-- Python 3.7.9 or later
+- Python 3.10 or later
 
 ```bash
 python -m venv venv
