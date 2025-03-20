@@ -12,6 +12,15 @@ def make_rows(parent, count):
     parent.grid_rowconfigure(0, weight=10)
 
 
+def download_clicked(list_items):
+    for index in range(0, len(list_items), 2):
+        entry = list_items[index]
+        label = list_items[index + 1]
+        # Get URL from entry, call yt-dlp, update label as it downloads
+        print(entry)
+        print(label)
+
+
 root = tk.Tk()
 
 list_container_rows = 0
@@ -29,9 +38,9 @@ content.grid_rowconfigure(0, pad=5)
 content.grid_columnconfigure(0, weight=10)
 
 # Grid Row 0: Button
-download_button = ttk.Button(content, text="Download")
-download_button.grid(row=0, column=0,
-                     sticky=(tk.W, tk.E, tk.N))
+download_button = ttk.Button(
+    content, text="Download", command=lambda: download_clicked(list_container.grid_slaves()))
+download_button.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N))
 
 # Grid Row 1: Separator
 separator = ttk.Separator(content, orient=tk.HORIZONTAL)
@@ -47,7 +56,5 @@ list_container.grid_columnconfigure(0, weight=90)
 list_container.grid_columnconfigure(1, weight=10)
 
 make_rows(list_container, 10)
-
-# TODO: Set up download button command
 
 root.mainloop()
